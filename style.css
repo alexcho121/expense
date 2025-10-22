@@ -14,6 +14,14 @@
   --shadow: 0 18px 36px rgba(10, 10, 20, 0.28);
 }
 
+html {
+  font-size: 93.75%;
+  -webkit-text-size-adjust: 100%;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 [data-theme="light"] {
   --bg-color: #f5f7fb;
   --card-bg: rgba(255, 255, 255, 0.82);
@@ -32,6 +40,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  width: 100%;
   font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: linear-gradient(140deg, rgba(76, 158, 227, 0.18), transparent 55%),
     radial-gradient(circle at 85% 15%, rgba(248, 208, 108, 0.08), transparent 40%), var(--bg-color);
@@ -41,14 +50,23 @@ body {
   align-items: stretch;
   line-height: 1.5;
   transition: background 0.3s ease, color 0.3s ease;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: 1rem;
 }
 
 .app-shell {
-  width: min(1240px, 100%);
-  padding: 24px clamp(16px, 4vw, 36px);
+  width: 100%;
+  max-width: 78rem;
+  padding: clamp(1.5rem, 4vw, 2.4rem) clamp(1rem, 4vw, 2.4rem);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: clamp(1.1rem, 3vw, 1.6rem);
 }
 
 .glass-card {
@@ -57,10 +75,10 @@ body {
   border: 1px solid var(--card-border);
   border-radius: var(--card-radius);
   box-shadow: var(--shadow);
-  padding: 24px;
+  padding: clamp(1.25rem, 3.1vw, 1.7rem);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: clamp(0.9rem, 2.5vw, 1.2rem);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -73,13 +91,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 24px;
+  padding: clamp(1rem, 3vw, 1.2rem) clamp(1.1rem, 4vw, 1.6rem);
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.8rem);
 }
 
 .brand-icon {
@@ -108,7 +126,7 @@ body {
   background: transparent;
   color: var(--text-muted);
   font-size: 1.2rem;
-  padding: 8px 10px;
+  padding: clamp(0.45rem, 2vw, 0.6rem) clamp(0.5rem, 2vw, 0.65rem);
 }
 
 .icon-button:hover {
@@ -119,7 +137,7 @@ body {
 .primary-btn {
   background: linear-gradient(135deg, var(--primary), rgba(76, 158, 227, 0.78));
   color: #0f1a28;
-  padding: 12px 24px;
+  padding: clamp(0.7rem, 2.9vw, 0.9rem) clamp(1.1rem, 5vw, 1.5rem);
   font-weight: 600;
   box-shadow: 0 12px 24px rgba(76, 158, 227, 0.25);
 }
@@ -132,7 +150,7 @@ body {
 .ghost-btn {
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-muted);
-  padding: 10px 18px;
+  padding: clamp(0.6rem, 2.5vw, 0.75rem) clamp(1rem, 3.5vw, 1.2rem);
   font-weight: 500;
 }
 
@@ -143,13 +161,13 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 24px;
+  grid-template-columns: minmax(0, 27%) minmax(0, 1fr);
+  gap: clamp(1.1rem, 3vw, 1.6rem);
 }
 
 .sidebar {
   position: sticky;
-  top: 24px;
+  top: clamp(1.2rem, 4vw, 1.5rem);
   align-self: flex-start;
 }
 
@@ -163,16 +181,16 @@ body {
 
 .sidebar nav ul {
   list-style: none;
-  margin: 14px 0 0;
+  margin: clamp(0.75rem, 2.5vw, 0.9rem) 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .sidebar a {
   display: block;
-  padding: 10px 16px;
+  padding: clamp(0.6rem, 2.5vw, 0.75rem) clamp(1rem, 3.5vw, 1.2rem);
   border-radius: 10px;
   color: var(--text-muted);
   font-weight: 500;
@@ -189,7 +207,7 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: clamp(1rem, 3vw, 1.6rem);
 }
 
 .page-header h2 {
@@ -198,33 +216,33 @@ body {
 }
 
 .page-subtitle {
-  margin: 6px 0 0;
+  margin: clamp(0.35rem, 1.8vw, 0.5rem) 0 0;
   color: var(--text-muted);
   font-size: 0.95rem;
 }
 
 .card-grid {
   display: grid;
-  gap: 24px;
+  gap: clamp(1rem, 3vw, 1.5rem);
 }
 
 .primary-grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 }
 
 .secondary-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
 }
 
 .settings-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
 }
 
 .card-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .card-header h2 {
@@ -247,16 +265,16 @@ body {
 .totals {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .total-item {
   background: rgba(255, 255, 255, 0.05);
-  padding: 16px;
+  padding: clamp(0.9rem, 3vw, 1.1rem);
   border-radius: var(--card-radius);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: clamp(0.35rem, 1.6vw, 0.5rem);
 }
 
 .total-item span {
@@ -278,18 +296,18 @@ body {
 }
 
 .budget-card {
-  gap: 16px;
+  gap: clamp(0.8rem, 2.5vw, 1rem);
 }
 
 .budget-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .budget-input-row {
   display: flex;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .budget-input-row input {
@@ -299,7 +317,7 @@ body {
 .budget-progress {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(0.4rem, 2vw, 0.6rem);
 }
 
 .budget-progress-header {
@@ -314,14 +332,14 @@ body {
   margin: 0;
   color: var(--expense);
   font-size: 0.85rem;
-  min-height: 18px;
+  min-height: 1.2rem;
 }
 
 .progress-bar {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   overflow: hidden;
-  height: 10px;
+  height: 0.65rem;
   position: relative;
 }
 
@@ -336,13 +354,13 @@ body {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: clamp(0.8rem, 2.5vw, 1rem);
 }
 
 .form-grid label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(0.4rem, 1.8vw, 0.6rem);
   font-size: 0.85rem;
   color: var(--text-muted);
 }
@@ -354,7 +372,7 @@ body {
   background: rgba(0, 0, 0, 0.24);
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.7rem, 2.5vw, 0.85rem);
   color: var(--text-main);
   font: inherit;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -380,7 +398,7 @@ body {
 .toggle-field {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(0.4rem, 1.8vw, 0.6rem);
   flex-direction: row;
   font-weight: 500;
 }
@@ -394,7 +412,7 @@ body {
 
 .form-footnote,
 .card-footnote {
-  margin: 8px 0 0;
+  margin: clamp(0.4rem, 1.8vw, 0.6rem) 0 0;
   color: var(--text-muted);
   font-size: 0.85rem;
 }
@@ -419,16 +437,16 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .recent-list li {
   background: rgba(255, 255, 255, 0.05);
-  padding: 12px 14px;
+  padding: clamp(0.7rem, 3vw, 0.85rem) clamp(0.85rem, 3vw, 1rem);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: clamp(0.35rem, 1.5vw, 0.5rem);
 }
 
 .recent-list li span {
@@ -450,7 +468,7 @@ body {
 .goal-form {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .goal-form button {
@@ -460,16 +478,16 @@ body {
 .goals-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: clamp(0.9rem, 3vw, 1.2rem);
 }
 
 .goal-card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
-  padding: 16px;
+  padding: clamp(0.9rem, 3vw, 1.1rem);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
   position: relative;
   overflow: hidden;
 }
@@ -485,7 +503,7 @@ body {
 
 .goal-actions {
   display: flex;
-  gap: 8px;
+  gap: clamp(0.4rem, 1.5vw, 0.6rem);
   align-items: center;
 }
 
@@ -506,7 +524,7 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 520px;
+  min-width: min(100%, 32.5rem);
 }
 
 thead tr {
@@ -518,7 +536,7 @@ thead tr {
 
 th,
 td {
-  padding: 12px 16px;
+  padding: clamp(0.65rem, 2.5vw, 0.85rem) clamp(0.9rem, 3vw, 1.1rem);
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -556,36 +574,36 @@ tbody tr:hover {
 
 .history-actions {
   display: flex;
-  gap: 10px;
+  gap: clamp(0.5rem, 2vw, 0.7rem);
 }
 
 .button-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .footer {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.85rem;
-  padding-bottom: 16px;
+  padding-bottom: clamp(0.8rem, 3vw, 1.1rem);
 }
 
 .toast-container {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
+  bottom: clamp(1.4rem, 5vw, 2rem);
+  right: clamp(1.4rem, 5vw, 2rem);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
   z-index: 999;
 }
 
 .toast {
   background: rgba(44, 46, 68, 0.9);
   border-radius: 10px;
-  padding: 12px 18px;
+  padding: clamp(0.7rem, 2.5vw, 0.85rem) clamp(0.9rem, 3vw, 1.1rem);
   color: #fff;
   font-size: 0.9rem;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
@@ -608,7 +626,7 @@ tbody tr:hover {
 .empty-state {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 10px;
-  padding: 18px;
+  padding: clamp(0.9rem, 3vw, 1.2rem);
   color: var(--text-muted);
   text-align: center;
 }
@@ -619,16 +637,16 @@ tbody tr:hover {
 
 .install-banner {
   position: fixed;
-  bottom: 24px;
+  bottom: clamp(1rem, 4vw, 1.5rem);
   left: 50%;
   transform: translateX(-50%);
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 999px;
-  padding: 12px 20px;
+  padding: clamp(0.75rem, 2vw, 0.9rem) clamp(1rem, 5vw, 1.25rem);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: clamp(0.6rem, 2vw, 1rem);
   box-shadow: var(--shadow);
   backdrop-filter: var(--glass-blur);
   z-index: 1000;
@@ -644,12 +662,12 @@ tbody tr:hover {
 
 .banner-actions {
   display: flex;
-  gap: 10px;
+  gap: clamp(0.4rem, 2vw, 0.65rem);
   align-items: center;
 }
 
 .banner-install-btn {
-  padding: 8px 18px;
+  padding: clamp(0.5rem, 2vw, 0.65rem) clamp(0.9rem, 3vw, 1.2rem);
   font-size: 0.85rem;
 }
 
@@ -659,7 +677,7 @@ tbody tr:hover {
   color: var(--text-muted);
   font-size: 0.8rem;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: clamp(0.35rem, 2vw, 0.45rem) clamp(0.5rem, 2vw, 0.65rem);
   transition: color 0.2s ease;
 }
 
@@ -680,7 +698,7 @@ tbody tr:hover {
 
 @media (max-width: 1024px) {
   .layout {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
   }
 }
 
@@ -695,10 +713,11 @@ tbody tr:hover {
 
   .sidebar {
     position: fixed;
-    top: 24px;
-    left: 16px;
-    bottom: 24px;
-    width: min(260px, 80vw);
+    top: 4vw;
+    left: 4vw;
+    bottom: 4vw;
+    width: 78vw;
+    max-width: 28rem;
     transform: translateX(-120%);
     transition: transform 0.3s ease;
     z-index: 1000;
@@ -709,17 +728,17 @@ tbody tr:hover {
   }
 
   .main-content {
-    padding-top: 8px;
+    padding-top: 2vw;
   }
 }
 
 @media (max-width: 640px) {
   .app-shell {
-    padding: 16px;
+    padding: clamp(1rem, 6vw, 1.2rem);
   }
 
   .glass-card {
-    padding: 20px;
+    padding: clamp(1.1rem, 5vw, 1.4rem);
   }
 
   .card-grid,
@@ -750,20 +769,32 @@ tbody tr:hover {
   }
 
   .toast-container {
-    right: 16px;
-    left: 16px;
-    bottom: 16px;
+    right: 4vw;
+    left: 4vw;
+    bottom: 4vw;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    transform: scale(0.95);
+    transform-origin: top center;
+    min-height: 105vh;
+  }
+
+  body.nav-open .sidebar {
+    transform: translateX(0);
   }
 }
 .mobile-nav-toggle {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: clamp(2.4rem, 8vw, 2.8rem);
+  height: clamp(2.4rem, 8vw, 2.8rem);
   border: none;
   background: transparent;
   position: relative;
   cursor: pointer;
-  margin-right: 16px;
+  margin-right: clamp(0.8rem, 3vw, 1rem);
   transition: transform 0.2s ease;
 }
 
