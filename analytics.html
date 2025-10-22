@@ -18,6 +18,12 @@
   <body>
     <div class="app-shell">
       <header class="top-nav glass-card">
+        <button
+          class="mobile-nav-toggle"
+          id="mobileNavToggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        ></button>
         <div class="brand">
           <span class="brand-icon" aria-hidden="true">💼</span>
           <h1>Expense Tracker</h1>
@@ -26,6 +32,8 @@
           <button class="icon-button" id="themeToggle" aria-label="Toggle theme">🌓</button>
         </div>
       </header>
+
+      <div class="nav-overlay hidden" id="navOverlay"></div>
 
       <div class="layout">
         <aside class="sidebar glass-card">

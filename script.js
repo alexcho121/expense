@@ -41,6 +41,8 @@ const elements = {
   exportDataBtn: document.getElementById("exportDataBtn"),
   importDataBtn: document.getElementById("importDataBtn"),
   importFileInput: document.getElementById("importFileInput"),
+  mobileNavToggle: document.getElementById("mobileNavToggle"),
+  navOverlay: document.getElementById("navOverlay"),
 };
 
 const formatCurrency = (value) =>
@@ -105,6 +107,28 @@ const bindEvents = () => {
     elements.importDataBtn.addEventListener("click", () => elements.importFileInput.click());
     elements.importFileInput.addEventListener("change", handleImport);
   }
+
+  if (elements.mobileNavToggle) {
+    elements.mobileNavToggle.addEventListener("click", toggleNavigation);
+  }
+
+  if (elements.navOverlay) {
+    elements.navOverlay.addEventListener("click", closeNavigation);
+  }
+
+  document.querySelectorAll(".sidebar nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMobileViewport()) {
+        closeNavigation();
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (!isMobileViewport()) {
+      closeNavigation();
+    }
+  });
 };
 
 const handleTransactionSubmit = (event) => {
@@ -659,6 +683,31 @@ const formatMonthKey = (key) => {
   });
 };
 
+const isMobileViewport = () => window.matchMedia("(max-width: 900px)").matches;
+
+const openNavigation = () => {
+  if (!elements.mobileNavToggle || !elements.navOverlay) return;
+  document.body.classList.add("nav-open");
+  elements.mobileNavToggle.setAttribute("aria-expanded", "true");
+  elements.navOverlay.classList.remove("hidden");
+};
+
+const closeNavigation = () => {
+  if (!elements.mobileNavToggle || !elements.navOverlay) return;
+  document.body.classList.remove("nav-open");
+  elements.mobileNavToggle.setAttribute("aria-expanded", "false");
+  elements.navOverlay.classList.add("hidden");
+};
+
+const toggleNavigation = () => {
+  if (!elements.mobileNavToggle || !elements.navOverlay) return;
+  if (document.body.classList.contains("nav-open")) {
+    closeNavigation();
+  } else {
+    openNavigation();
+  }
+};
+
 const registerServiceWorker = () => {
   if (!("serviceWorker" in navigator)) {
     return;
@@ -734,6 +783,7 @@ const init = () => {
   loadState();
   applyTheme();
   bindEvents();
+  closeNavigation();
   renderEverything();
   registerServiceWorker();
   setupInstallPromptHandlers();

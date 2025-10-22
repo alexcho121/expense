@@ -213,7 +213,7 @@ body {
 }
 
 .secondary-grid {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .settings-grid {
@@ -689,18 +689,27 @@ tbody tr:hover {
     grid-template-columns: 1fr;
   }
 
+  .mobile-nav-toggle {
+    display: block;
+  }
+
   .sidebar {
-    position: static;
+    position: fixed;
+    top: 24px;
+    left: 16px;
+    bottom: 24px;
+    width: min(260px, 80vw);
+    transform: translateX(-120%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
   }
 
-  .sidebar nav ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
+  body.nav-open .sidebar {
+    transform: translateX(0);
   }
 
-  .sidebar a {
-    padding: 8px 14px;
+  .main-content {
+    padding-top: 8px;
   }
 }
 
@@ -711,6 +720,13 @@ tbody tr:hover {
 
   .glass-card {
     padding: 20px;
+  }
+
+  .card-grid,
+  .primary-grid,
+  .secondary-grid,
+  .settings-grid {
+    grid-template-columns: 1fr;
   }
 
   .form-grid {
@@ -738,4 +754,45 @@ tbody tr:hover {
     left: 16px;
     bottom: 16px;
   }
+}
+.mobile-nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  margin-right: 16px;
+  transition: transform 0.2s ease;
+}
+
+.mobile-nav-toggle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 18px;
+  border-color: transparent transparent transparent var(--primary);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.mobile-nav-toggle[aria-expanded="true"]::before {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 20, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 950;
+}
+
+.nav-overlay.hidden {
+  display: none;
 }
