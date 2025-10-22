@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker — Analytics</title>
+    <meta name="theme-color" content="#4C9EE3" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-nav glass-card">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">💼</span>
+          <h1>Expense Tracker</h1>
+        </div>
+        <div class="top-nav-actions">
+          <button class="icon-button" id="themeToggle" aria-label="Toggle theme">🌓</button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar glass-card">
+          <nav>
+            <p class="sidebar-title">Workspace</p>
+            <ul>
+              <li><a href="index.html">Dashboard</a></li>
+              <li><a class="active" href="analytics.html">Analytics</a></li>
+              <li><a href="goals.html">Goals</a></li>
+              <li><a href="settings.html">Settings</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="main-content">
+          <section class="page-header">
+            <h2>Analytics & History</h2>
+            <p class="page-subtitle">Dive deeper into category distribution, trends, and transaction logs.</p>
+          </section>
+
+          <section class="card-grid primary-grid">
+            <article class="glass-card">
+              <div class="card-header">
+                <h2>Expense Distribution</h2>
+                <span class="card-subtitle">By category</span>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="categoryChart"></canvas>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-header">
+                <h2>Monthly Trend</h2>
+                <span class="card-subtitle">Income vs expense (6 months)</span>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="monthlyChart"></canvas>
+              </div>
+            </article>
+          </section>
+
+          <section class="glass-card history-card">
+            <div class="card-header">
+              <div>
+                <h2>Transaction History</h2>
+                <span class="card-subtitle">Complete ledger</span>
+              </div>
+              <div class="history-actions">
+                <button class="ghost-btn" id="recurringBtn">Recurring</button>
+                <button class="ghost-btn" id="clearAllBtn">Clear All</button>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="transactionTableBody">
+                  <tr class="empty-row">
+                    <td colspan="5">No transactions yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="footer">© 2025 Expense Tracker — Manage smart, not hard.</footer>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>

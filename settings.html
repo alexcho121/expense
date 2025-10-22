@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker — Settings</title>
+    <meta name="theme-color" content="#4C9EE3" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-nav glass-card">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">💼</span>
+          <h1>Expense Tracker</h1>
+        </div>
+        <div class="top-nav-actions">
+          <button class="icon-button" id="themeToggle" aria-label="Toggle theme">🌓</button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar glass-card">
+          <nav>
+            <p class="sidebar-title">Workspace</p>
+            <ul>
+              <li><a href="index.html">Dashboard</a></li>
+              <li><a href="analytics.html">Analytics</a></li>
+              <li><a href="goals.html">Goals</a></li>
+              <li><a class="active" href="settings.html">Settings</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="main-content">
+          <section class="page-header">
+            <h2>Workspace Settings</h2>
+            <p class="page-subtitle">Manage preferences, backups, and data hygiene.</p>
+          </section>
+
+          <section class="card-grid settings-grid">
+            <article class="glass-card">
+              <div class="card-header">
+                <h2>Data Management</h2>
+                <span class="card-subtitle">Keep your ledger portable</span>
+              </div>
+              <div class="button-stack">
+                <button class="primary-btn" id="exportDataBtn">Export Data</button>
+                <button class="ghost-btn" id="importDataBtn">Import Data</button>
+                <input type="file" id="importFileInput" accept="application/json" hidden />
+              </div>
+              <p class="card-footnote">
+                Export generates a JSON snapshot. Import will replace your current transactions, goals, and settings.
+              </p>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-header">
+                <h2>Theme</h2>
+                <span class="card-subtitle">Dark for focus, light for clarity</span>
+              </div>
+              <p>
+                Toggle the theme using the
+                <span aria-hidden="true">🌓</span> button in the header. Your preference is saved automatically.
+              </p>
+            </article>
+          </section>
+        </main>
+      </div>
+
+      <footer class="footer">© 2025 Expense Tracker — Manage smart, not hard.</footer>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
