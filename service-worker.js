@@ -1,4 +1,6 @@
-const CACHE_NAME = "expense-tracker-cache-v1";
+const CACHE_VERSION = "v2";
+const CACHE_NAME = `expense-tracker-${CACHE_VERSION}`;
+const APP_PREFIX = "expense-tracker-";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
@@ -23,12 +25,9 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-          return undefined;
-        })
+        keys
+          .filter((key) => key.startsWith(APP_PREFIX) && key !== CACHE_NAME)
+          .map((outdatedKey) => caches.delete(outdatedKey))
       )
     )
   );
